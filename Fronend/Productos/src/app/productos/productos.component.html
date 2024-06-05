@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Gestión de Productos</h2>
+
+  <form (ngSubmit)="crearOActualizarProducto()">
+    <div>
+      <label>Nombre:</label>
+      <input [(ngModel)]="nuevoProducto.nombre" name="nombre" required />
+    </div>
+    <div>
+      <label>Descripción:</label>
+      <input [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required />
+    </div>
+    <div>
+      <label>Precio:</label>
+      <input [(ngModel)]="nuevoProducto.precio" name="precio" required />
+    </div>
+    <button type="submit">{{ editMode ? 'Actualizar Producto' : 'Crear Producto' }}</button>
+    <button class="cancelar" type="button" (click)="resetForm()" *ngIf="editMode">Cancelar</button>
+  </form>
+
+  <hr />
+
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.codigo }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.precio }}</td>
+        <td>
+          <button class="botonf" (click)="iniciarActualizacion(producto)">Actualizar</button>
+          <button class="botong" (click)="borrarProducto(producto.codigo)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

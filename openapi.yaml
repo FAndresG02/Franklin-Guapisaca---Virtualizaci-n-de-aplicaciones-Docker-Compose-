@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: ProductoServices API
+  version: 1.0.0
+  description: API para la gestión de productos
+servers:
+  - url: http://localhost:8080/demo64/rs
+    description: Local Server
+
+paths:
+  /productos:
+    post:
+      summary: Crear un nuevo producto
+      operationId: crearProducto
+      requestBody:
+        description: Datos del producto a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+      responses:
+        '201':
+          description: Producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    put:
+      summary: Actualizar un producto existente
+      operationId: actualizarProducto
+      requestBody:
+        description: Datos del producto a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+      responses:
+        '200':
+          description: Producto actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+        '404':
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+    delete:
+      summary: Eliminar un producto
+      operationId: borrarProducto
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID del producto a eliminar
+      responses:
+        '200':
+          description: Producto eliminado exitosamente
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Producto Eliminado"
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+
+  /productos/list:
+    get:
+      summary: Obtener la lista de productos
+      operationId: getProductos
+      responses:
+        '200':
+          description: Lista de productos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+        '404':
+          description: No se registran productos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+
+components:
+  schemas:
+    Producto:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          example: 3
+        nombre:
+          type: string
+          example: Pato
+        descripcion:
+          type: string
+          example: Pato de Ule
+        precio:
+          type: string
+          example: 25
+    ErrorMessage:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          example: 1
+        mensaje:
+          type: string
+          example: ok
