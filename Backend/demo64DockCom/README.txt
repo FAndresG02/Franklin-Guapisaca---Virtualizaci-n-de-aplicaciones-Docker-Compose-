@@ -1,9 +1,12 @@
-Proyecto del servidor de WildFly
+## Proyecto del Backend
+
+### Repositorio de la imagen en Docker Hub
+
+https://hub.docker.com/repository/docker/fandresga/eclipsedockerc/general
 
 Crear la imagen de este proyecto.
 
-Utiliza el siguiente comando:
-```bash
-docker build -t <nombre_de_la_imagen>
+Utilice el siguiente comando para construir la imagen de Docker. 
 
-Reemplazar `<nombre_de_la_imagen>` con el nombre que desees para la imagen de Docker. 
+```bash
+docker build -t backdock
