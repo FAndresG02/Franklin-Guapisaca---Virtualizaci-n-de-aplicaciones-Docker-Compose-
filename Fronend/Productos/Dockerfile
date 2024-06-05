@@ -13,5 +13,5 @@ COPY --from=build-angular /app/dist/productos .
 # Puertos
 EXPOSE 80
 
-# Comando que iniciar ambos servidores
+# Comando que inicia ambos servidores
 CMD ["nginx", "-g","daemon off;"]
