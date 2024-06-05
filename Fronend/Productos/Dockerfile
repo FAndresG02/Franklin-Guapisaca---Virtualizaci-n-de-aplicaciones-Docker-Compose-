@@ -5,13 +5,13 @@ RUN npm install
 COPY ./ /app
 RUN npm run build --prod
 
-# Copiamos las direcciones de angular y nodejs en los files de la imagen
+# Direcciones de angular y nodejs en los files de la imagen
 FROM nginx:1.17.1-alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=build-angular /app/dist/productos .
 
-# puertos a exponer
+# Puertos
 EXPOSE 80
 
-# Comando para iniciar ambos servidores
+# Comando que iniciar ambos servidores
 CMD ["nginx", "-g","daemon off;"]
